@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
+import DeleteComponent from './DeleteComponent';
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
      <Header/>
      <Profile/>
      <Navbar/>
+     <DeleteComponent/>
     </div>
   );
 }
