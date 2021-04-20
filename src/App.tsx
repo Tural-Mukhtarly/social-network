@@ -12,7 +12,9 @@ function App() {
       <Header />
       {/* <Profile /> */}
       <Navbar />
+      <div className="app-wrapper-content">
       <Dialogs/>
+      </div>
     </div>
   );
 }

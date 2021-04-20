@@ -1,8 +1,10 @@
 import React from 'react'
+import s from './Dialogs.module.css'
+
 
 function Dialogs() {
     return (
-        <div>
+        <div className={s.content}>
             Dialogs
         </div>
     )
