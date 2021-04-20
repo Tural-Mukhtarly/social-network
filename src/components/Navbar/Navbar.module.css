@@ -1,0 +1,14 @@
+.nav{
+    grid-area: n;
+    background: lightgreen;
+    padding: 20px;
+}
+.item a{
+    color: cornflowerblue;
+    text-decoration: none;
+}
+.item a.active{
+    color:rgb(94, 85, 5);
+    text-decoration: none;
+}
+
