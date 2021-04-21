@@ -1,8 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Dialogs.module.css'
+import DialogsItem from './DialogsItem.tsx/DialogsItem'
 
-const dialogsData = [
+export type DialogsType = {
+    id: number
+    name: string
+}
+
+const dialogsData: Array<DialogsType> = [
     { id: 1, name: "Tural" },
     { id: 2, name: "Rahib" },
     { id: 3, name: "Meherrem" },
@@ -22,22 +28,14 @@ function Dialogs() {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <div className={s.dialog + " " + s.active}>
-                    <NavLink to="dialogs/1">Tural</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="dialogs/2">Olga</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="dialogs/3">Rahib</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="dialogs/4">Maqa</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="dialogs/5">Emil</NavLink>
-                </div>
+
+                {
+                    dialogsData.map((e) => {
+                        return <DialogsItem name={e.name} id={e.id} />
+                    })
+                }
             </div>
+
             <div className={s.messages}>
                 <div className={s.message}>Hello</div>
                 <div className={s.message}>How are you?</div>
