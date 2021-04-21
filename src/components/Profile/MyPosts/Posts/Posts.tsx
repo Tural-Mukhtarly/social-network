@@ -1,11 +1,18 @@
 import React from 'react'
 
-function Posts() {
+type PostItemType = {
+    id: number
+    post: string
+    likesCount: number
+}
+
+function Posts(props: PostItemType) {
     return (
         <div>
             <div className='item'>
-                Post
+                {props.post}
             </div>
+            <div> {props.likesCount}</div>
         </div>
     )
 }

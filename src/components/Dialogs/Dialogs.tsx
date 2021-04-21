@@ -1,11 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './Dialogs.module.css'
-import DialogsItem from './DialogsItem.tsx/DialogsItem'
+import DialogsItem from './DialogsItem/DialogsItem'
+import Message from './Message/Message'
 
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
+}
+type MessageType = {
+    id: number
+    message: string
 }
 
 const dialogsData: Array<DialogsType> = [
@@ -16,7 +21,7 @@ const dialogsData: Array<DialogsType> = [
     { id: 5, name: "Seymur" },
 ]
 
-const messagesData = [
+const messagesData: Array<MessageType> = [
     { id: 1, message: "Hello" },
     { id: 2, message: "How are you?" },
     { id: 3, message: "Where are you from?" },
@@ -37,11 +42,12 @@ function Dialogs() {
             </div>
 
             <div className={s.messages}>
-                <div className={s.message}>Hello</div>
-                <div className={s.message}>How are you?</div>
-                <div className={s.message}>Where are you from</div>
-                <div className={s.message}>Where is your cat</div>
-                <div className={s.message}>Your cat is so sweet</div>
+                {
+                    messagesData.map((e) => {
+                        return <Message id = {e.id} message = { e.message } />})
+                }
+
+
             </div>
         </div>
     )
