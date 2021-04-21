@@ -1,20 +1,15 @@
 import React from 'react'
 import s from './MyPosts.module.css'
 import Posts from './Posts/Posts'
+import { PostDataType } from '../../../index'
 
-type PostDataType = {
-    id: number
-    post: string
-    likesCount: number
+
+type MyPostsTypes = {
+    postData: Array<PostDataType>
 }
 
-const postData: Array<PostDataType> = [
-    { id: 1, post: 'post', likesCount: 11 },
-    { id: 2, post: 'post', likesCount: 12 },
-    { id: 3, post: 'post', likesCount: 13 }
-]
 
-const MyPosts = () => {
+const MyPosts = (props: MyPostsTypes) => {
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -28,11 +23,11 @@ const MyPosts = () => {
             </div>
             <div className={s.posts}>
                 {
-                    postData.map((e) => {
+                    props.postData.map((e) => {
                         return <Posts id={e.id} post={e.post} likesCount={e.likesCount} />
                     })
                 }
-                
+
 
             </div>
         </div>
