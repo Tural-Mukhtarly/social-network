@@ -1,9 +1,14 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { state } from './redux/state'
-import rerender from './rerender';
+import { subscribe } from './redux/state'
+import { rerender } from './rerender';
 
-rerender(state)
+
+
+// rerender(state)
+
+subscribe(rerender)
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

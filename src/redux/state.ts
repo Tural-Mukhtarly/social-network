@@ -1,4 +1,14 @@
-import { rerender } from './../rerender';
+
+let render = () => {
+    console.log('12345');
+
+}
+
+export const subscribe = (observer: () => void) => {
+    render = observer
+}
+
+
 export type DialogsType = {
     id: number
     name: string
@@ -10,7 +20,7 @@ export type MessageType = {
 
 export type PostDataType = {
     id: number
-    post: string 
+    post: string
     likesCount: number
 }
 
@@ -66,5 +76,6 @@ export const addPost = (postNew: string) => {
         likesCount: 67
     }
     state.profilePage.postData.push(newPosts)
-    rerender(state)
+    render()
 }
+

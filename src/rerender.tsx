@@ -1,9 +1,9 @@
 import React from 'react'
 import App from './App';
 import ReactDOM from 'react-dom';
-import { RootStateType } from './redux/state'
+import { state } from './redux/state'
 
-export const rerender = (state: RootStateType) => {
+export const rerender = () => {
     ReactDOM.render(
         <React.StrictMode>
             <App state={state} />
@@ -11,5 +11,3 @@ export const rerender = (state: RootStateType) => {
         document.getElementById('root')
     );
 }
-
-export default rerender

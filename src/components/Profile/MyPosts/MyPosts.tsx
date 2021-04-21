@@ -1,16 +1,13 @@
 import React, { createRef } from 'react'
 import s from './MyPosts.module.css'
 import Posts from './Posts/Posts'
-import { PostDataType, state } from '../../../redux/state'
-import rerender from '../../../rerender'
+import { PostDataType } from '../../../redux/state'
 
 
 type MyPostsTypes = {
     postData: Array<PostDataType>
     addPost: (postNew: string ) => void
 }
-
-
 
 let newPostElement = createRef<HTMLTextAreaElement>()
 
