@@ -1,19 +1,22 @@
 import React from 'react'
+import s from './MyPosts.module.css'
+import Posts from './Posts/Posts'
 
-const MyPosts = () =>{
-    return(
-        <div>
-            My posts
+const MyPosts = () => {
+    return (
+        <div className={s.postsBlock}>
+            <h3>My posts</h3>
             <div>
-                New post
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add Post</button>
+                </div>
             </div>
-            <div className='posts'>
-                <div className='item'>
-                    post 1
-                </div>
-                <div className='item'>
-                    post 2
-                </div>
+            <div className={s.posts}>
+                <Posts />
+                <Posts />
             </div>
         </div>
     )
