@@ -1,3 +1,4 @@
+import { rerender } from './../rerender';
 export type DialogsType = {
     id: number
     name: string
@@ -9,7 +10,7 @@ export type MessageType = {
 
 export type PostDataType = {
     id: number
-    post: string
+    post: string 
     likesCount: number
 }
 
@@ -56,4 +57,14 @@ export const state: RootStateType = {
         ]
     },
     sidebarPage: {}
+}
+
+export const addPost = (postNew: string) => {
+    const newPosts: PostDataType = {
+        id: 17,
+        post: postNew,
+        likesCount: 67
+    }
+    state.profilePage.postData.push(newPosts)
+    rerender(state)
 }

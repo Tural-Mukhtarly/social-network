@@ -6,6 +6,7 @@ import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
 import { RootStateType } from './redux/state'
+import { addPost } from './redux/state'
 
 type StateType = {
   state: RootStateType
@@ -19,7 +20,7 @@ function App(props: StateType) {
         <Navbar />
         <div className="app-wrapper-content">
           <Route path="/dialogs" render={() => <Dialogs dialogsData={props.state.dialogsPage.dialogsData} messagesData={props.state.dialogsPage.messagesData} />} />
-          <Route path="/profile" render={() => <Profile postData={props.state.profilePage.postData} />} />
+          <Route path="/profile" render={() => <Profile postData={props.state.profilePage.postData} addPost={addPost} />} />
         </div>
       </div>
     </BrowserRouter>
