@@ -1,4 +1,10 @@
-import { rerender } from './../rerender';
+let renderTree = () => {
+    console.log('121');
+}
+
+export const subscribe = (callback: () => void) => {
+    renderTree = callback
+}
 
 export type DialogsType = {
     id: number
@@ -67,5 +73,5 @@ export const addPost = (postNew: string) => {
         likesCount: 67
     }
     state.profilePage.postData.push(newPosts)
-    rerender()
+    renderTree()
 }
