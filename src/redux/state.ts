@@ -1,10 +1,4 @@
-let renderTree = () => {
-    console.log('');
-}
 
-export const subscribe = (callback: () => void) => {
-    renderTree = callback
-}
 
 export type DialogsType = {
     id: number
@@ -85,12 +79,12 @@ const store: StoreType = {
     },
     addPost(postNew: string) {
         const newPosts: PostDataType = {
-            id: 17,
+            id: new Date().getTime(),
             post: postNew,
             likesCount: 67
         }
         this._state.profilePage.postData.push(newPosts)
-        renderTree()
+        this._renderTree()
     },
     _renderTree() {
         console.log('');
