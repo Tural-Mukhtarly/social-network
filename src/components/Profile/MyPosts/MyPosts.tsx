@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import s from './MyPosts.module.css'
 import Posts from './Posts/Posts'
-import { PostDataType } from '../../../redux/state'
+import { ActionTypes, addPostAC,changeNewTextAC, PostDataType } from '../../../redux/state'
 
 
 type MyPostsTypes = {
@@ -9,17 +9,18 @@ type MyPostsTypes = {
     addPost: (postNew: string) => void
     changeNewTextCallback: (newText: string) => void
     message: string
+    dispatch: (action: ActionTypes) => void
 }
 
 
 const MyPosts = (props: MyPostsTypes) => {
 
     const addPostItem = () => {
-        props.addPost(props.message)
+        props.dispatch(addPostAC(props.message))
     }
 
     const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewTextCallback(e.currentTarget.value)
+        props.dispatch(changeNewTextAC(e.currentTarget.value))
     }
     return (
         <div className={s.postsBlock}>

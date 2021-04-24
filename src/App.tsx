@@ -19,8 +19,21 @@ function App(props: StateType) {
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route path="/dialogs" render={() => <Dialogs dialogsData={state.dialogsPage.dialogsData} messagesData={state.dialogsPage.messagesData} />} />
-          <Route path="/profile" render={() => <Profile postData={state.profilePage.postData} addPost={props.store.addPost.bind(props.store)} changeNewTextCallback ={props.store.changeNewText.bind(props.store)} message={state.profilePage.newPostText} />} />
+
+          <Route path="/dialogs" render={() =>
+            <Dialogs
+              dialogsData={state.dialogsPage.dialogsData}
+              messagesData={state.dialogsPage.messagesData} />}
+          />
+
+          <Route path="/profile" render={() =>
+            <Profile
+              postData={state.profilePage.postData}
+              addPost={props.store.addPost.bind(props.store)}
+              changeNewTextCallback={props.store.changeNewText.bind(props.store)}
+              message={state.profilePage.newPostText}
+              dispatch={props.store.dispatch.bind(props.store)} />}
+          />
         </div>
       </div>
     </BrowserRouter>

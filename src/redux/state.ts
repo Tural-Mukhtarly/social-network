@@ -1,5 +1,4 @@
 
-
 export type DialogsType = {
     id: number
     name: string
@@ -42,6 +41,24 @@ export type StoreType = {
     _renderTree: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: ActionTypes) => void
+}
+type AddPostActionType = ReturnType<typeof addPostAC>
+type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
+
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType
+
+export const addPostAC = (postNew: string) => {
+    return {
+        type: "ADD-POST",
+        postNew: postNew
+    } as const
+}
+export const changeNewTextAC = (newText: string) => {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
 }
 
 const store: StoreType = {
@@ -94,7 +111,22 @@ const store: StoreType = {
     },
     getState() {
         return this._state
+    },
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            const newPosts: PostDataType = {
+                id: new Date().getTime(),
+                post: action.postNew,
+                likesCount: 67
+            }
+            this._state.profilePage.postData.push(newPosts)
+            this._renderTree()
+        } else if (action.type === "CHANGE-NEW-TEXT") {
+            this._state.profilePage.newPostText = action.newText
+            this._renderTree()
+        }
     }
 }
+
 
 export default store

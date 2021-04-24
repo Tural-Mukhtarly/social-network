@@ -2,7 +2,7 @@ import React from 'react'
 import './Profile.css'
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import { PostDataType } from '../../redux/state'
+import { ActionTypes, PostDataType } from '../../redux/state'
 
 
 type ProfileTypes = {
@@ -10,13 +10,19 @@ type ProfileTypes = {
     addPost: (postNew: string) => void
     changeNewTextCallback: (newText: string) => void
     message: string
+    dispatch: (action: ActionTypes) => void
 }
 
 const Profile = (props: ProfileTypes) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postData={props.postData} addPost={props.addPost} changeNewTextCallback={props.changeNewTextCallback} message={props.message} />
+            <MyPosts 
+            postData={props.postData} 
+            addPost={props.addPost} 
+            changeNewTextCallback={props.changeNewTextCallback} 
+            message={props.message}
+            dispatch={props.dispatch} />
         </div>
     )
 }
