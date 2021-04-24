@@ -6,18 +6,17 @@ import { PostDataType } from '../../../redux/state'
 
 type MyPostsTypes = {
     postData: Array<PostDataType>
-    addPost: (postNew: string ) => void
+    addPost: (postNew: string) => void
+    changeNewTextCallback: (newText: string) => void
 }
 
 let newPostElement = createRef<HTMLTextAreaElement>()
-
-
-
+    
 
 const MyPosts = (props: MyPostsTypes) => {
-    
+
     const addPostItem = () => {
-        if(newPostElement.current){
+        if (newPostElement.current) {
             props.addPost(newPostElement.current?.value)
 
         }

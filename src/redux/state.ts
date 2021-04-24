@@ -1,5 +1,5 @@
 let renderTree = () => {
-    console.log('121');
+    console.log('');
 }
 
 export const subscribe = (callback: () => void) => {
@@ -10,6 +10,7 @@ export type DialogsType = {
     id: number
     name: string
 }
+
 export type MessageType = {
     id: number
     message: string
@@ -28,6 +29,7 @@ type DialogsPageType = {
 
 type ProfilePageType = {
     postData: Array<PostDataType>
+    newPostText: string
 }
 
 type SidebarType = {}
@@ -38,40 +40,67 @@ export type RootStateType = {
     sidebarPage: SidebarType
 }
 
-export const state: RootStateType = {
-    dialogsPage: {
-        dialogsData: [
-            { id: 1, name: "Tural" },
-            { id: 2, name: "Rahib" },
-            { id: 3, name: "Meherrem" },
-            { id: 4, name: "Emil" },
-            { id: 5, name: "Seymur" },
-        ],
-        messagesData: [
-            { id: 1, message: "Hello" },
-            { id: 2, message: "How are you?" },
-            { id: 3, message: "Where are you from?" },
-            { id: 4, message: "Where is your cat?" },
-            { id: 5, message: "Your cat is so sweet" },
-        ]
-    },
 
-    profilePage: {
-        postData: [
-            { id: 1, post: 'post', likesCount: 11 },
-            { id: 2, post: 'post', likesCount: 12 },
-            { id: 3, post: 'post', likesCount: 13 }
-        ]
-    },
-    sidebarPage: {}
+export type StoreType = {
+    _state: RootStateType
+    changeNewText: (newText: string) => void
+    addPost: (postNew: string) => void
+    _renderTree: () => void
+    subscribe: (callback: () => void) => void
+    getState: () => RootStateType
 }
 
-export const addPost = (postNew: string) => {
-    const newPosts: PostDataType = {
-        id: 17,
-        post: postNew,
-        likesCount: 67
+const store: StoreType = {
+    _state: {
+        dialogsPage: {
+            dialogsData: [
+                { id: 1, name: "Tural" },
+                { id: 2, name: "Rahib" },
+                { id: 3, name: "Meherrem" },
+                { id: 4, name: "Emil" },
+                { id: 5, name: "Seymur" },
+            ],
+            messagesData: [
+                { id: 1, message: "Hello" },
+                { id: 2, message: "How are you?" },
+                { id: 3, message: "Where are you from?" },
+                { id: 4, message: "Where is your cat?" },
+                { id: 5, message: "Your cat is so sweet" },
+            ]
+        },
+
+        profilePage: {
+            postData: [
+                { id: 1, post: 'post', likesCount: 11 },
+                { id: 2, post: 'post', likesCount: 12 },
+                { id: 3, post: 'post', likesCount: 13 }
+            ],
+            newPostText: "it-kamasutra.com"
+        },
+        sidebarPage: {}
+    },
+    changeNewText(newText: string) {
+        this._state.profilePage.newPostText = newText
+        this._renderTree()
+    },
+    addPost(postNew: string) {
+        const newPosts: PostDataType = {
+            id: 17,
+            post: postNew,
+            likesCount: 67
+        }
+        this._state.profilePage.postData.push(newPosts)
+        renderTree()
+    },
+    _renderTree() {
+        console.log('');
+    },
+    subscribe(callback) {
+        this._renderTree = callback
+    },
+    getState() {
+        return this._state
     }
-    state.profilePage.postData.push(newPosts)
-    renderTree()
 }
+
+export default store
