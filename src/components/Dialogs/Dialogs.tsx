@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import s from './Dialogs.module.css'
 import DialogsItem from './DialogsItem/DialogsItem'
 import Message from './Message/Message'
-import { DialogsType, MessageType } from '../../redux/state'
+import { ActionTypes, addNewBodyAC, changeNewBodyAC, DialogsType, MessageType } from '../../redux/state'
 
 
 type DialogsTypes = {
     dialogsData: Array<DialogsType>
     messagesData: Array<MessageType>
+    newMessageBody: string
+    dispatch: (action: ActionTypes) => void
 }
 
 function Dialogs(props: DialogsTypes) {
+
+    const addMessageItem = () => {
+        props.dispatch(addNewBodyAC(props.newMessageBody))
+    }
+
+    const newMessageChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch(changeNewBodyAC(e.currentTarget.value))
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -31,6 +41,9 @@ function Dialogs(props: DialogsTypes) {
 
 
             </div>
+            <textarea value={props.newMessageBody} onChange={newMessageChangeHandler}></textarea>
+            <button onClick={addMessageItem}>Send</button>
+
         </div>
     )
 }

@@ -18,6 +18,7 @@ export type PostDataType = {
 type DialogsPageType = {
     dialogsData: Array<DialogsType>
     messagesData: Array<MessageType>
+    newMessageBody: string
 }
 
 type ProfilePageType = {
@@ -45,8 +46,10 @@ export type StoreType = {
 }
 type AddPostActionType = ReturnType<typeof addPostAC>
 type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
+type ChangeNewBodyActionType = ReturnType<typeof changeNewBodyAC>
+type AddNewBodyActionType = ReturnType<typeof addNewBodyAC>
 
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType
 
 export const addPostAC = (postNew: string) => {
     return {
@@ -58,6 +61,18 @@ export const changeNewTextAC = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+export const changeNewBodyAC = (body: string) => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: body
+    } as const
+}
+export const addNewBodyAC = (newBody: string) => {
+    return {
+        type: "ADD-MESSAGE",
+        newBody: newBody
     } as const
 }
 
@@ -77,7 +92,8 @@ const store: StoreType = {
                 { id: 3, message: "Where are you from?" },
                 { id: 4, message: "Where is your cat?" },
                 { id: 5, message: "Your cat is so sweet" },
-            ]
+            ],
+            newMessageBody: "Send Message"
         },
 
         profilePage: {
@@ -86,7 +102,7 @@ const store: StoreType = {
                 { id: 2, post: 'post', likesCount: 12 },
                 { id: 3, post: 'post', likesCount: 13 }
             ],
-            newPostText: "it-kamasutra.com"
+            newPostText: "Create Post"
         },
         sidebarPage: {}
     },
@@ -123,6 +139,16 @@ const store: StoreType = {
             this._renderTree()
         } else if (action.type === "CHANGE-NEW-TEXT") {
             this._state.profilePage.newPostText = action.newText
+            this._renderTree()
+        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+            this._state.dialogsPage.newMessageBody = action.body
+            this._renderTree()
+        } else if (action.type === "ADD-MESSAGE") {
+            const newMessage: MessageType = {
+                id: new Date().getSeconds(),
+                message: action.newBody
+            }
+            this._state.dialogsPage.messagesData.push(newMessage)
             this._renderTree()
         }
     }

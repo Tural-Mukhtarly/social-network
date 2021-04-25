@@ -23,7 +23,10 @@ function App(props: StateType) {
           <Route path="/dialogs" render={() =>
             <Dialogs
               dialogsData={state.dialogsPage.dialogsData}
-              messagesData={state.dialogsPage.messagesData} />}
+              messagesData={state.dialogsPage.messagesData}
+              newMessageBody={state.dialogsPage.newMessageBody}
+              dispatch={props.store.dispatch.bind(props.store)}
+            />}
           />
 
           <Route path="/profile" render={() =>
