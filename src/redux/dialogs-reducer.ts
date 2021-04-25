@@ -4,7 +4,26 @@ import { MessageType } from './state';
 export type ChangeNewBodyActionType = ReturnType<typeof changeNewBodyAC>
 export type AddNewBodyActionType = ReturnType<typeof addNewBodyAC>
 
-const dialogsReducer = (state: any, action: any) => {
+const initialState = {
+        dialogsData: [
+            { id: 1, name: "Tural" },
+            { id: 2, name: "Rahib" },
+            { id: 3, name: "Meherrem" },
+            { id: 4, name: "Emil" },
+            { id: 5, name: "Seymur" },
+        ],
+        messagesData: [
+            { id: 1, message: "Hello" },
+            { id: 2, message: "How are you?" },
+            { id: 3, message: "Where are you from?" },
+            { id: 4, message: "Where is your cat?" },
+            { id: 5, message: "Your cat is so sweet" },
+        ],
+        newMessageBody: "Send Message"
+}
+
+
+const dialogsReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
         case "ADD-MESSAGE":
             const newMessage: MessageType = {

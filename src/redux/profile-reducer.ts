@@ -2,8 +2,16 @@ import { PostDataType } from './state';
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
 
+const initialState = {
+    postData: [
+        { id: 1, post: 'post', likesCount: 11 },
+        { id: 2, post: 'post', likesCount: 12 },
+        { id: 3, post: 'post', likesCount: 13 }
+    ],
+    newPostText: "Create Post"
+}
 
-const profileReducer = (state: any, action: any) => {
+const profileReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
         case "ADD-POST":
