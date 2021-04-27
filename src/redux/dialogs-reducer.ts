@@ -1,4 +1,4 @@
-import { MessageType } from './state';
+import { MessageType } from './store';
 
 
 export type ChangeNewBodyActionType = ReturnType<typeof changeNewBodyAC>

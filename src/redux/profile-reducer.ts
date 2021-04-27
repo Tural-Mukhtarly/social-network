@@ -1,4 +1,4 @@
-import { PostDataType } from './state';
+import { PostDataType } from './store';
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
 

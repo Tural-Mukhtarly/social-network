@@ -41,7 +41,7 @@ export type StoreType = {
 }
 export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType
 
-const store: StoreType = {
+export const store: StoreType = {
     _state: {
         dialogsPage: {
             dialogsData: [
