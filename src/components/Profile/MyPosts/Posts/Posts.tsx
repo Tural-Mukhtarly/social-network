@@ -1,7 +1,6 @@
 import React from 'react'
 
 type PostItemType = {
-    id: number
     post: string
     likesCount: number
 }

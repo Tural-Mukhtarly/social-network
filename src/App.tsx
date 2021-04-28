@@ -1,18 +1,20 @@
 import React from 'react'
 import { Route } from 'react-router-dom';
 import './App.css';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import { StoreType } from './redux/store'
+import { ActionTypes, RootStateType, StoreType } from './redux/store'
 
 type StateType = {
+  state: RootStateType
   store: StoreType
+  dispatch: (action: ActionTypes) => void
 }
 
 function App(props: StateType) {
-  const state = props.store.getState()
+
   return (
     <div className="app-wrapper">
       <Header />
@@ -20,21 +22,17 @@ function App(props: StateType) {
       <div className="app-wrapper-content">
 
         <Route path="/dialogs" render={() =>
-          <Dialogs
-            dialogsData={state.dialogsPage.dialogsData}
-            messagesData={state.dialogsPage.messagesData}
-            newMessageBody={state.dialogsPage.newMessageBody}
-            dispatch={props.store.dispatch.bind(props.store)}
+          <DialogsContainer
+            store={props.store}
           />}
         />
 
         <Route path="/profile" render={() =>
           <Profile
-            postData={state.profilePage.postData}
-            addPost={props.store.addPost.bind(props.store)}
-            changeNewTextCallback={props.store.changeNewText.bind(props.store)}
-            message={state.profilePage.newPostText}
-            dispatch={props.store.dispatch.bind(props.store)} />}
+            profilePage={props.state.profilePage}
+            dispatch={props.dispatch}
+            store={props.store} />}
+
         />
       </div>
     </div>
