@@ -1,6 +1,7 @@
 import { StoreType } from '../../redux/store'
 import { addNewBodyAC, changeNewBodyAC } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
+import { connect } from 'react-redux'
 
 
 type DialogsContainerTypes = {
@@ -25,6 +26,14 @@ function DialogsContainer(props: DialogsContainerTypes) {
         store={props.store}
     />
 }
+
+const mapStateToProps = (state) => {
+    return {
+        
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer
 
