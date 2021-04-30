@@ -1,35 +1,28 @@
-import { StoreType } from '../../redux/store'
+import store, { StoreType } from '../../redux/store'
 import { addNewBodyAC, changeNewBodyAC } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 import { connect } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
 
 
 type DialogsContainerTypes = {
     store: StoreType
 }
 
-function DialogsContainer(props: DialogsContainerTypes) {
-
-    const state = props.store.getState().dialogsPage
-
-    const addMessageItem = () => {
-        props.store.dispatch(addNewBodyAC(state.newMessageBody))
+const mapStateToProps = (state:AppStateType) => {
+    return {
+        dialogsPage: state.dialogPage
     }
-
-    const updateNewMessageBody = (body: string) => {
-        props.store.dispatch(changeNewBodyAC(body))
-    }
-    return <Dialogs
-        updateNewMessageBody={updateNewMessageBody}
-        sendMessage={addMessageItem}
-        dialogsPage={state}
-        store={props.store}
-    />
 }
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch:any) => {
     return {
-        
+        updateNewMessageBody: (body: string) => {
+            dispatch(changeNewBodyAC(body))
+        },
+        addMessageItem: () => {
+            dispatch(addNewBodyAC())
+        }
     }
 }
 

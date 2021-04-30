@@ -20,8 +20,7 @@ function Dialogs(props: DialogsTypes) {
     }
 
     const newMessageChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const body = e.currentTarget.value
-        props.updateNewMessageBody(body)
+        props.updateNewMessageBody(e.currentTarget.value)
         // props.store.dispatch(changeNewBodyAC(e.currentTarget.value))
     }
     return (
