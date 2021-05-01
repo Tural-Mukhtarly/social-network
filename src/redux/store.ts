@@ -1,15 +1,18 @@
 import dialogsReducer, { AddNewBodyActionType, ChangeNewBodyActionType } from "./dialogs-reducer"
 import profileReducer, { AddPostActionType, ChangeNewTextActionType } from "./profile-reducer"
 
-export type DialogsType = {
+type DialogsType = {
     id: number
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type PostDataType = {
+
+
+
+type PostDataType = {
     id: number
     post: string
     likesCount: number

@@ -5,15 +5,12 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import { ActionTypes, RootStateType, StoreType } from './redux/store'
 
-type StateType = {
-  state: RootStateType
-  store: StoreType
-  dispatch: (action: ActionTypes) => void
-}
+// type StateType = {
+//   store: StoreType
+// }
 
-function App(props: StateType) {
+function App() {
 
   return (
     <div className="app-wrapper">
@@ -21,19 +18,10 @@ function App(props: StateType) {
       <Navbar />
       <div className="app-wrapper-content">
 
-        <Route path="/dialogs" render={() =>
-          <DialogsContainer
-            store={props.store}
-          />}
+        <Route path="/dialogs" render={() => <DialogsContainer />}
         />
 
-        <Route path="/profile" render={() =>
-          <Profile
-            profilePage={props.state.profilePage}
-            dispatch={props.dispatch}
-            store={props.store} />}
-
-        />
+        <Route path="/profile" render={() => <Profile />} />
       </div>
     </div>
   );

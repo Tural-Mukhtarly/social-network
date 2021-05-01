@@ -5,18 +5,15 @@ import { ActionTypes, ProfilePageType, StoreType } from '../../redux/store'
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
-type ProfileTypes = {
-    store: StoreType
-    profilePage: ProfilePageType
-    dispatch: (action: ActionTypes) => void
-}
+// type ProfileTypes = {
+//     store: StoreType
+// }
 
-const Profile = (props: ProfileTypes) => {
+const Profile = () => {
     return (
         <div>
             <ProfileInfo />
-            <MyPostsContainer
-                store={props.store} />
+            <MyPostsContainer/>
         </div>
     )
 }

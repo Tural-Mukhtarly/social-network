@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import store from 'react-redux'
-// import store, { RootStateType } from './redux/store';
+import {store} from './redux/redux-store';
 import reportWebVitals from './reportWebVitals';
+import { RootStateType } from './redux/store';
 
 
 export const rerenderEntireTree = (state: RootStateType) => {
@@ -13,12 +13,12 @@ export const rerenderEntireTree = (state: RootStateType) => {
         <BrowserRouter>
             <Provider store={store}>
                 <App />
-                {/* <App state={state} dispatch={store.dispatch.bind(store)} store={store} /> */}
             </Provider>
         </BrowserRouter>,
         document.getElementById('root')
     );
 }
+debugger;
 rerenderEntireTree(store.getState())
 
 

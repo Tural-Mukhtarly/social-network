@@ -1,17 +1,25 @@
-import { PostDataType } from './store';
+import {ActionTypes } from './store';
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
+
+export type PostDataType = {
+    id: number
+    post: string
+    likesCount: number
+}
 
 const initialState = {
     postData: [
         { id: 1, post: 'post', likesCount: 11 },
         { id: 2, post: 'post', likesCount: 12 },
         { id: 3, post: 'post', likesCount: 13 }
-    ],
+    ]as Array<PostDataType>,
+    
     newPostText: "Create Post"
 }
+export type InitialStateType = typeof initialState
 
-const profileReducer = (state: any = initialState, action: any) => {
+const profileReducer = (state: InitialStateType = initialState, action: ActionTypes) => {
 
     switch (action.type) {
         case "ADD-POST":
@@ -30,6 +38,7 @@ const profileReducer = (state: any = initialState, action: any) => {
             return state
     }
 }
+
 
 export const addPostAC = (postNew: string) => {
     return {
