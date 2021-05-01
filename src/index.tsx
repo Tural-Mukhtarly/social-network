@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import {store} from './redux/redux-store';
 import reportWebVitals from './reportWebVitals';
-import { RootStateType } from './redux/store';
 
 
 // export const rerenderEntireTree = (state: RootStateType) => {

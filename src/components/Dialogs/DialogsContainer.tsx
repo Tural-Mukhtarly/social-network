@@ -1,4 +1,3 @@
-import { RootStateType } from '../../redux/store'
 import { addNewBodyAC, changeNewBodyAC } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 import { connect } from 'react-redux'

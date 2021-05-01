@@ -7,7 +7,7 @@ import userReducers from './users-reducer';
 const rootReducers = combineReducers({
     profilePage: profileReducer,
     dialogPage: dialogsReducer,
-    userPage: userReducers
+    usersPage: userReducers
 })
 
 export type AppStateType = ReturnType<typeof rootReducers>

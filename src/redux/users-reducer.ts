@@ -70,7 +70,7 @@ export const unfollowAC = (userID: number) => {
     } as const
 }
 
-export const setUserAC = (users: any) => {
+export const setUserAC = (users: Array<UsersType>) => {
     return {
         type: "SET-USERS",
         users: users
