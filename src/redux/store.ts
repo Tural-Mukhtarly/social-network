@@ -1,6 +1,8 @@
 // import { } from 'react-redux';
 import dialogsReducer, { AddNewBodyActionType, ChangeNewBodyActionType } from "./dialogs-reducer"
 import profileReducer, { AddPostActionType, ChangeNewTextActionType } from "./profile-reducer"
+import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC } from "./users-reducer"
+
 
 type DialogsType = {
     id: number
@@ -10,8 +12,18 @@ type MessageType = {
     id: number
     message: string
 }
-
-
+type UsersType = {
+    id: number
+    photoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: LocationType
+}
+type LocationType = {
+    city: string,
+    country: string
+}
 
 type PostDataType = {
     id: number
@@ -27,12 +39,17 @@ export type ProfilePageType = {
     postData: Array<PostDataType>
     newPostText: string
 }
+
+export type UsersPageType = {
+    users: Array<UsersType>
+}
 type SidebarType = {}
 
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebarPage: SidebarType
+    usersPage: UsersPageType
 }
 export type StoreType = {
     _state: RootStateType
@@ -43,7 +60,7 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType | followTypeAC | unfollowTypeAC | setUserTypeAC
 
 export const store: StoreType = {
     _state: {
@@ -73,6 +90,13 @@ export const store: StoreType = {
             ],
             newPostText: "Create Post"
         },
+        usersPage: {
+            users: [
+                { id: 1, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Nikita', status: 'Boss', location: { city: "Minsk", country: "Belarus" } },
+                { id: 2, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: true, fullName: 'Maksim', status: 'Boss', location: { city: "Minsk", country: "Belarus" } },
+                { id: 3, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Andrey', status: 'Boss', location: { city: "Minsk", country: "Belarus" } }
+            ]
+        },
         sidebarPage: {}
     },
     changeNewText(newText: string) {
@@ -101,7 +125,8 @@ export const store: StoreType = {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        // this._state.sidebarPage = sidebarReducer(this._state.sidebarPage, action)
+        this._state.usersPage = userReducers(this._state.usersPage, action)
+        // this._state.sidebarPage = userReducers(this._state.sidebarPage, action)
 
         this._renderTree()
     }

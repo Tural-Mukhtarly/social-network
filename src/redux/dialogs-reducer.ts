@@ -41,12 +41,16 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionTy
                 id: new Date().getSeconds(),
                 message: state.newMessageBody
             }
-            state.messagesData.push(newMessage)
-            state.newMessageBody = ""
-            return state
-        case "UPDATE-NEW-MESSAGE-BODY":
-            state.newMessageBody = action.body
-            return state
+            let stateCopy = {...state}
+            stateCopy.messagesData.push(newMessage)
+            stateCopy.newMessageBody = ""
+            return stateCopy
+        case "UPDATE-NEW-MESSAGE-BODY":{
+            let stateCopy = {...state}
+            stateCopy.newMessageBody = action.body
+            return stateCopy
+        }
+           
         default:
             return state
     }

@@ -29,7 +29,7 @@ function Dialogs(props: DialogsPropsTypes) {
 
                 {
                     props.dialogsPage.dialogsData.map((e) => {
-                        return <DialogsItem name={e.name} id={e.id} />
+                        return <DialogsItem key={e.id} name={e.name} id={e.id} />
                     })
                 }
             </div>
@@ -37,7 +37,7 @@ function Dialogs(props: DialogsPropsTypes) {
             <div className={s.messages}>
                 {
                     props.dialogsPage.messagesData.map((e) => {
-                        return <Message id={e.id} message={e.message} />
+                        return <Message key={e.id} id={e.id} message={e.message} />
                     })
                 }
 
