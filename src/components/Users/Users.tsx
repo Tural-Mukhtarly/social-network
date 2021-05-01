@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { UsersPageType } from '../../redux/store'
 import { UsersType } from '../../redux/users-reducer'
 import s from './Users.module.css'
@@ -11,17 +12,18 @@ type UsersesType = {
 
 function Users(props: UsersesType) {
 
-    // if (props.usersPage.users.length === 0) {
-    //     props.setUser([
-    //         { id: 1, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Nikita', status: 'Boss', location: { city: "Minsk", country: "Belarus" } },
-    //         { id: 2, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: true, fullName: 'Maksim', status: 'Boss', location: { city: "Minsk", country: "Belarus" } },
-    //         { id: 3, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Andrey', status: 'Boss', location: { city: "Minsk", country: "Belarus" } }
-    //     ] as Array<UsersType>)
-    // }
+    if (props.usersPage.users.length === 0) {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                props.setUser(response.data.items)
+            })
+    }
+    // console.log(props.usersPage.users,"34567");
+    
 
     return (
         <div>
-            {props.usersPage.users.map((u) => <div>
+            {props.usersPage.users.map((u) => <div key={u.id}>
                 <span>
                     <div>
                         <img alt="#" src={u.photoUrl} className={s.userPhoto} />
@@ -38,8 +40,8 @@ function Users(props: UsersesType) {
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{"u.location.country"}</div>
+                        <div>{"u.location.city"}</div>
                     </span>
                 </span>
             </div>)}
