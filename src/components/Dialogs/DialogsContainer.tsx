@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
 
 
-
 const mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogPage
@@ -17,8 +16,8 @@ const mapDispatchToProps = (dispatch: any) => {
         updateNewMessageBody: (body: string) => {
             dispatch(changeNewBodyAC(body))
         },
-        addMessageItem: (newBody: string) => {
-            dispatch(addNewBodyAC(newBody))
+        addMessageItem: () => {
+            dispatch(addNewBodyAC())
         }
     }
 }

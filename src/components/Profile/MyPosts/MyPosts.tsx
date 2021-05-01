@@ -1,14 +1,14 @@
 import React, { ChangeEvent } from 'react'
 import { PostDataType } from '../../../redux/profile-reducer'
+import { ProfilePageType } from '../../../redux/store'
 import s from './MyPosts.module.css'
 import Posts from './Posts/Posts'
 
 
 type MyPostsTypes = {
-    postData: Array<PostDataType>
+    postPage: ProfilePageType
     addPost: () => void
     updateNewPostText: (text: string) => void
-    newPostText: string
 }
 
 const MyPosts = (props: MyPostsTypes) => {
@@ -27,7 +27,7 @@ const MyPosts = (props: MyPostsTypes) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea value={props.newPostText} onChange={newTextChangeHandler} ></textarea>
+                    <textarea value={props.postPage.newPostText} onChange={newTextChangeHandler} ></textarea>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add Post</button>
@@ -35,7 +35,7 @@ const MyPosts = (props: MyPostsTypes) => {
             </div>
             <div className={s.posts}>
                 {
-                    props.postData.map((e) => {
+                    props.postPage.postData.map((e) => {
                         return <Posts post={e.post} likesCount={e.likesCount} />
                     })
                 }

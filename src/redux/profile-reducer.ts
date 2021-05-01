@@ -1,4 +1,4 @@
-import {ActionTypes } from './store';
+import { ActionTypes } from './store';
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
 
@@ -13,19 +13,19 @@ const initialState = {
         { id: 1, post: 'post', likesCount: 11 },
         { id: 2, post: 'post', likesCount: 12 },
         { id: 3, post: 'post', likesCount: 13 }
-    ]as Array<PostDataType>,
-    
+    ] as Array<PostDataType>,
+
     newPostText: "Create Post"
 }
 export type InitialStateType = typeof initialState
 
-const profileReducer = (state: InitialStateType = initialState, action: ActionTypes) => {
+const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
     switch (action.type) {
         case "ADD-POST":
             const newPosts: PostDataType = {
                 id: new Date().getTime(),
-                post: action.postNew,
+                post: state.newPostText,
                 likesCount: 67
             }
             state.postData.push(newPosts)
@@ -40,10 +40,9 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
 }
 
 
-export const addPostAC = (postNew: string) => {
+export const addPostAC = () => {
     return {
         type: "ADD-POST",
-        postNew: postNew
     } as const
 }
 export const changeNewTextAC = (newText: string) => {

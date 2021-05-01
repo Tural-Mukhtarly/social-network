@@ -5,8 +5,8 @@ import { AppStateType } from '../../../redux/redux-store'
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        postData: state.profilePage.postData,
-        newPostText: state.profilePage.newPostText
+        postPage: state.profilePage,
+        // newPostText: state.profilePage.newPostText
     }
 }
 
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch: any) => {
             const action = changeNewTextAC(text)
             dispatch(action)
         },
-        addPost: (state: AppStateType) => {
-            dispatch(addPostAC(state.profilePage.newPostText))
+        addPost: () => {
+            dispatch(addPostAC())
         }
     }
 }

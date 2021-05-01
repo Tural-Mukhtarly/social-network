@@ -2,19 +2,18 @@ import React, { ChangeEvent } from 'react'
 import s from './Dialogs.module.css'
 import DialogsItem from './DialogsItem/DialogsItem'
 import Message from './Message/Message'
-import { StoreType } from '../../redux/store'
+import { DialogsPageType, StoreType } from '../../redux/store'
 import { DialogsType } from '../../redux/dialogs-reducer'
 
 
 type DialogsPropsTypes = {
-    store: StoreType
     addMessageItem: () => void
     updateNewMessageBody: (body: string) => void
-    dialogsPage: DialogsType
+    dialogsPage: DialogsPageType
 }
 
 function Dialogs(props: DialogsPropsTypes) {
-    const state = props.store.getState().dialogsPage
+    // const state = props.store.getState().dialogsPage
 
     const addMessageItem = () => {
         props.addMessageItem()
@@ -29,7 +28,7 @@ function Dialogs(props: DialogsPropsTypes) {
             <div className={s.dialogsItems}>
 
                 {
-                    state.dialogsData.map((e) => {
+                    props.dialogsPage.dialogsData.map((e) => {
                         return <DialogsItem name={e.name} id={e.id} />
                     })
                 }
@@ -37,14 +36,14 @@ function Dialogs(props: DialogsPropsTypes) {
 
             <div className={s.messages}>
                 {
-                    state.messagesData.map((e) => {
+                    props.dialogsPage.messagesData.map((e) => {
                         return <Message id={e.id} message={e.message} />
                     })
                 }
 
 
             </div>
-            <textarea value={state.newMessageBody} onChange={newMessageChangeHandler}></textarea>
+            <textarea value={props.dialogsPage.newMessageBody} onChange={newMessageChangeHandler}></textarea>
             <button onClick={addMessageItem}>Send</button>
 
         </div>

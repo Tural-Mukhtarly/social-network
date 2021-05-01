@@ -21,7 +21,7 @@ const initialState = {
         { id: 4, name: "Emil" },
         { id: 5, name: "Seymur" },
     ] as Array<DialogsType>,
-   
+
     messagesData: [
         { id: 1, message: "Hello" },
         { id: 2, message: "How are you?" },
@@ -39,7 +39,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionTy
         case "ADD-MESSAGE":
             const newMessage: MessageType = {
                 id: new Date().getSeconds(),
-                message: action.newBody
+                message: state.newMessageBody
             }
             state.messagesData.push(newMessage)
             state.newMessageBody = ""
@@ -59,10 +59,10 @@ export const changeNewBodyAC = (body: string) => {
         body: body
     } as const
 }
-export const addNewBodyAC = (newBody: string) => {
+export const addNewBodyAC = () => {
     return {
         type: "ADD-MESSAGE",
-        newBody: newBody
+
     } as const
 }
 

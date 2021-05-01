@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import { RootStateType } from './redux/store';
 
 
-export const rerenderEntireTree = (state: RootStateType) => {
+// export const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -17,15 +17,14 @@ export const rerenderEntireTree = (state: RootStateType) => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
-debugger;
-rerenderEntireTree(store.getState())
+// }
+// rerenderEntireTree(store.getState())
 
 
-store.subscribe(() => {
-    const state = store.getState();
-    rerenderEntireTree(state)
-})
+// store.subscribe(() => {
+    // const state = store.getState();
+    // rerenderEntireTree(state)
+// })
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
