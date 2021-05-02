@@ -14,12 +14,16 @@ type UsersesType = {
 export class Users extends Component<UsersesType> {
     constructor(props: UsersesType) {
         super(props)
-
+    }
+    
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users")
             .then(response => {
                 this.props.setUser(response.data.items)
             })
     }
+
+
     render() {
         return (
             <div>
