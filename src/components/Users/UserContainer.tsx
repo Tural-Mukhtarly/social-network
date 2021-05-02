@@ -1,7 +1,7 @@
-import Users from './Users'
 import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
 import { followAC, setUserAC, unfollowAC, UsersType } from '../../redux/users-reducer'
+import Users from './Users'
 
 
 const mapStateToProps = (state: AppStateType) => {
