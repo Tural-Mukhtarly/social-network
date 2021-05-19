@@ -1,4 +1,3 @@
-// import { } from 'react-redux';
 import dialogsReducer, { AddNewBodyActionType, ChangeNewBodyActionType } from "./dialogs-reducer"
 import profileReducer, { AddPostActionType, ChangeNewTextActionType } from "./profile-reducer"
 import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC } from "./users-reducer"

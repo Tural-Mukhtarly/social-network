@@ -18,7 +18,7 @@ export type UsersType = {
 }
 
 const initialState = {
-    users: [] as Array<UsersType>
+    users: [] as Array<UsersType>,
 }
 
 
