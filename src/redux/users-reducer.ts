@@ -2,6 +2,7 @@ import { ActionTypes } from './store';
 export type followTypeAC = ReturnType<typeof followAC>
 export type unfollowTypeAC = ReturnType<typeof unfollowAC>
 export type setUserTypeAC = ReturnType<typeof setUserAC>
+export type setCurrentUserTypeAC = ReturnType<typeof setCurrentUserAC>
 
 type LocationType = {
     city: string,
@@ -20,7 +21,8 @@ export type UsersType = {
 const initialState = {
     users: [] as Array<UsersType>,
     pagesSize: 5,
-    totalUserCount: 0
+    totalUserCount: 20,
+    currentPage: 3
 }
 
 
@@ -51,6 +53,9 @@ const userReducers = (state: InitialStateType = initialState, action: ActionType
         case "SET-USERS": {
             return { ...state, users: [...state.users, ...action.users] }
         }
+        case "SET-CURRENT-USERS": {
+            return { ...state, currentPage: action.currentPage }
+        }
         default:
             return state
     }
@@ -73,6 +78,12 @@ export const setUserAC = (users: Array<UsersType>) => {
     return {
         type: "SET-USERS",
         users: users
+    } as const
+}
+export const setCurrentUserAC = (currentPage: number) => {
+    return {
+        type: "SET-CURRENT-USERS",
+        currentPage: currentPage
     } as const
 }
 

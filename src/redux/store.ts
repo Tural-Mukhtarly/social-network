@@ -1,6 +1,6 @@
 import dialogsReducer, { AddNewBodyActionType, ChangeNewBodyActionType } from "./dialogs-reducer"
 import profileReducer, { AddPostActionType, ChangeNewTextActionType } from "./profile-reducer"
-import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC } from "./users-reducer"
+import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC, setCurrentUserTypeAC } from "./users-reducer"
 
 
 type DialogsType = {
@@ -43,6 +43,7 @@ export type UsersPageType = {
     users: Array<UsersType>
     pagesSize: number
     totalUserCount: number
+    currentPage: number
 }
 type SidebarType = {}
 
@@ -61,7 +62,7 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType | followTypeAC | unfollowTypeAC | setUserTypeAC
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType | followTypeAC | unfollowTypeAC | setUserTypeAC | setCurrentUserTypeAC
 
 export const store: StoreType = {
     _state: {
@@ -98,7 +99,8 @@ export const store: StoreType = {
                 { id: 3, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Andrey', status: 'Boss', location: { city: "Minsk", country: "Belarus" } }
             ],
             pagesSize: 5,
-            totalUserCount: 0
+            totalUserCount: 0,
+            currentPage: 1
         },
         sidebarPage: {}
     },

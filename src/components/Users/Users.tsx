@@ -6,38 +6,37 @@ import s from './Users.module.css'
 
 type UsersesType = {
     usersPage: UsersPageType
+    pagesSize: number
+    totalUserCount: number
+    currentPage: number
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     setUser: (users: Array<UsersType>) => void
+    setCurrentUser: (currentPage: number) => void
 }
 
 export class Users extends Component<UsersesType> {
-    constructor(props: UsersesType) {
-        super(props)
-    }
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.pagesSize}`)
             .then(response => {
                 this.props.setUser(response.data.items)
             })
     }
-
     render() {
 
-        let pagesCount = this.props.usersPage.totalUserCount / this.props.usersPage.pagesSize
+        let pagesCount = Math.ceil(this.props.totalUserCount / this.props.usersPage.pagesSize)
 
         let pages = []
-        for (let i = 0; i < pagesCount; i++) {
+        for (let i = 1; i < pagesCount; i++) {
             pages.push(i)
         }
 
         return (
             <div>
-                {pages.map(p=>{
-                    <span className={true && s.selectedPage}>
-                        {p}
-                    </span>
+                {pages.map(p => {
+                    return <span onClick={()=>{this.props.setCurrentUser(p)}} className={this.props.currentPage === p ? s.selectedPage : ""}>{p}</span>
                 })}
+
                 {this.props.usersPage.users.map((u) => <div key={u.id}>
                     <span>
                         <div>
