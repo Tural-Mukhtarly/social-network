@@ -44,6 +44,7 @@ export type UsersPageType = {
     pagesSize: number
     totalUserCount: number
     currentPage: number
+    isFetching: boolean
 }
 type SidebarType = {}
 
@@ -100,7 +101,8 @@ export const store: StoreType = {
             ],
             pagesSize: 5,
             totalUserCount: 0,
-            currentPage: 1
+            currentPage: 1,
+            isFetching: true
         },
         sidebarPage: {}
     },

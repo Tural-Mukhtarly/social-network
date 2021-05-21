@@ -22,7 +22,8 @@ const initialState = {
     users: [] as Array<UsersType>,
     pagesSize: 5,
     totalUserCount: 20,
-    currentPage: 3
+    currentPage: 3,
+    isFetching: false
 }
 
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { UsersPageType } from '../../redux/store'
 import { UsersType } from '../../redux/users-reducer'
 import Users from './Users'
+import loading from './loading.gif'
 
 type UsersAPIComponentsType = {
     usersPage: UsersPageType
@@ -13,6 +14,7 @@ type UsersAPIComponentsType = {
     unfollow: (userID: number) => void
     setUser: (users: Array<UsersType>) => void
     setCurrentUser: (currentPage: number) => void
+    isFetching: boolean
 }
 
 export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
@@ -23,17 +25,23 @@ export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
             })
     }
     render() {
-        return <Users
-            totalUserCount={this.props.totalUserCount}
-            pagesSize={this.props.pagesSize}
-            usersPage={this.props.usersPage}
-            follow={this.props.follow}
-            unfollow={this.props.unfollow}
-            setUser={this.props.setUser}
-            setCurrentUser={this.props.setCurrentUser}
-            currentPage={this.props.currentPage}
-        />
 
+        return (
+            <>
+                { this.props.isFetching ? <img src={loading} alt="f" /> : null}
+                <Users
+                    totalUserCount={this.props.totalUserCount}
+                    pagesSize={this.props.pagesSize}
+                    usersPage={this.props.usersPage}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
+                    setUser={this.props.setUser}
+                    setCurrentUser={this.props.setCurrentUser}
+                    currentPage={this.props.currentPage}
+                    isFetching={this.props.isFetching}
+                />
+            </>
+        )
     }
 }
 

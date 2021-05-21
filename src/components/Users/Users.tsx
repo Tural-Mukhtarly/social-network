@@ -12,6 +12,7 @@ type UseresType = {
     unfollow: (userID: number) => void
     setUser: (users: Array<UsersType>) => void
     setCurrentUser: (currentPage: number) => void
+    isFetching: boolean
 }
 
 function Users(props: UseresType) {
