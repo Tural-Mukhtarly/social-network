@@ -24,11 +24,20 @@ export class Users extends Component<UsersesType> {
 
     render() {
 
-        // let pagesCount = this.props.usersPage.
+        let pagesCount = this.props.usersPage.totalUserCount / this.props.usersPage.pagesSize
+
+        let pages = []
+        for (let i = 0; i < pagesCount; i++) {
+            pages.push(i)
+        }
 
         return (
             <div>
-
+                {pages.map(p=>{
+                    <span className={true && s.selectedPage}>
+                        {p}
+                    </span>
+                })}
                 {this.props.usersPage.users.map((u) => <div key={u.id}>
                     <span>
                         <div>

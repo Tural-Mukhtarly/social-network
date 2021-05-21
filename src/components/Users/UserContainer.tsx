@@ -7,6 +7,8 @@ import Users from './Users'
 const mapStateToProps = (state: AppStateType) => {
     return {
         usersPage: state.usersPage,
+        pagesSize: state.usersPage.pagesSize,
+        totalUsercount: state.usersPage.totalUserCount
     }
 }
 

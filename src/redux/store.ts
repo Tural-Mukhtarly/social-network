@@ -41,6 +41,8 @@ export type ProfilePageType = {
 
 export type UsersPageType = {
     users: Array<UsersType>
+    pagesSize: number
+    totalUserCount: number
 }
 type SidebarType = {}
 
@@ -94,7 +96,9 @@ export const store: StoreType = {
                 { id: 1, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Nikita', status: 'Boss', location: { city: "Minsk", country: "Belarus" } },
                 { id: 2, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: true, fullName: 'Maksim', status: 'Boss', location: { city: "Minsk", country: "Belarus" } },
                 { id: 3, photoUrl: "https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Collections/Embargoed/23-02-2021_OCHA_Yemen-04.jpg/image770x420cropped.jpg", followed: false, fullName: 'Andrey', status: 'Boss', location: { city: "Minsk", country: "Belarus" } }
-            ]
+            ],
+            pagesSize: 5,
+            totalUserCount: 0
         },
         sidebarPage: {}
     },
