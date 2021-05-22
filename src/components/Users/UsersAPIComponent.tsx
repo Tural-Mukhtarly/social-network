@@ -28,7 +28,7 @@ export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
 
         return (
             <>
-                { this.props.isFetching ? <img src={loading} alt="f" /> : null}
+                { this.props.isFetching ? <img src={loading} alt="" /> : null}
                 <Users
                     totalUserCount={this.props.totalUserCount}
                     pagesSize={this.props.pagesSize}

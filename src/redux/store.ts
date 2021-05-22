@@ -1,5 +1,5 @@
 import dialogsReducer, { AddNewBodyActionType, ChangeNewBodyActionType } from "./dialogs-reducer"
-import profileReducer, { AddPostActionType, ChangeNewTextActionType } from "./profile-reducer"
+import profileReducer, { AddPostActionType, ChangeNewTextActionType, setUserProfileActionType } from "./profile-reducer"
 import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC, setCurrentUserTypeAC } from "./users-reducer"
 
 
@@ -37,6 +37,7 @@ export type DialogsPageType = {
 export type ProfilePageType = {
     postData: Array<PostDataType>
     newPostText: string
+    profile: null
 }
 
 export type UsersPageType = {
@@ -63,7 +64,7 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType | followTypeAC | unfollowTypeAC | setUserTypeAC | setCurrentUserTypeAC
+export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType | followTypeAC | unfollowTypeAC | setUserTypeAC | setCurrentUserTypeAC | setUserProfileActionType
 
 export const store: StoreType = {
     _state: {
@@ -91,7 +92,8 @@ export const store: StoreType = {
                 { id: 2, post: 'post', likesCount: 12 },
                 { id: 3, post: 'post', likesCount: 13 }
             ],
-            newPostText: "Create Post"
+            newPostText: "Create Post",
+            profile: null
         },
         usersPage: {
             users: [
@@ -138,6 +140,7 @@ export const store: StoreType = {
         this._renderTree()
     }
 }
+
 
 
 export default store

@@ -1,6 +1,7 @@
 import { ActionTypes } from './store';
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type ChangeNewTextActionType = ReturnType<typeof changeNewTextAC>
+export type setUserProfileActionType = ReturnType<typeof setUserProfile>
 
 export type PostDataType = {
     id: number
@@ -15,7 +16,8 @@ const initialState = {
         { id: 3, post: 'post', likesCount: 13 }
     ] as Array<PostDataType>,
 
-    newPostText: "Create Post"
+    newPostText: "Create Post",
+    profile: null
 }
 export type InitialStateType = typeof initialState
 
@@ -39,6 +41,8 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionTy
             stateCopy.newPostText = action.newText
             return stateCopy
         }
+        case "SET-USER-PROFILE":
+            return { ...state, profile: action.profile }
         default:
             return state
     }
@@ -54,6 +58,12 @@ export const changeNewTextAC = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+export const setUserProfile = (profile: null) => {
+    return {
+        type: "SET-USER-PROFILE",
+        profile: profile
     } as const
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { UsersPageType } from '../../redux/store'
 import { UsersType } from '../../redux/users-reducer'
 import s from './Users.module.css'
@@ -31,7 +32,9 @@ function Users(props: UseresType) {
             {props.usersPage.users.map((u) => <div key={u.id}>
                 <span>
                     <div>
-                        <img alt="#" src={"https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"} className={s.userPhoto} />
+                        <NavLink to={"/profile/" + u.id}>
+                            <img alt="#" src={"https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"} className={s.userPhoto} />
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed
