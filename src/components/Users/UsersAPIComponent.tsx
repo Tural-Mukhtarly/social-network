@@ -3,7 +3,7 @@ import axios from 'axios'
 import { UsersPageType } from '../../redux/store'
 import { UsersType } from '../../redux/users-reducer'
 import Users from './Users'
-import loading from './loading.gif'
+// import loading from './loading.gif'
 
 type UsersAPIComponentsType = {
     usersPage: UsersPageType
@@ -19,7 +19,7 @@ type UsersAPIComponentsType = {
 
 export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.pagesSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pagesSize}`)
             .then(response => {
                 this.props.setUser(response.data.items)
             })
@@ -28,7 +28,7 @@ export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
 
         return (
             <>
-                { this.props.isFetching ? <img src={loading} alt="" /> : null}
+                { this.props.isFetching ? <img alt="" /> : null}
                 <Users
                     totalUserCount={this.props.totalUserCount}
                     pagesSize={this.props.pagesSize}

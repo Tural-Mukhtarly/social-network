@@ -25,6 +25,8 @@ const initialState = {
     currentPage: 3,
     isFetching: false
 }
+console.log(initialState.users);
+
 
 
 export type InitialStateType = typeof initialState

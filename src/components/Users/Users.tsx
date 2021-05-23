@@ -17,7 +17,7 @@ type UseresType = {
 }
 
 function Users(props: UseresType) {
-    let pagesCount = Math.ceil(props.totalUserCount / props.usersPage.pagesSize)
+    let pagesCount = Math.ceil(props.totalUserCount / props.pagesSize)
 
     let pages = []
     for (let i = 1; i < pagesCount; i++) {

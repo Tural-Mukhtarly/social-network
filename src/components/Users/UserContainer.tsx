@@ -3,7 +3,6 @@ import { AppStateType } from '../../redux/redux-store'
 import { followAC, setCurrentUserAC, setUserAC, unfollowAC, UsersType } from '../../redux/users-reducer'
 import { UsersAPIComponent } from './UsersAPIComponent'
 
-
 const mapStateToProps = (state: AppStateType) => {
     return {
         usersPage: state.usersPage,
