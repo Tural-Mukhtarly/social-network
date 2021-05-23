@@ -1,11 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { UsersPageType } from '../../redux/store'
 import { UsersType } from '../../redux/users-reducer'
 import s from './Users.module.css'
 
 type UseresType = {
-    usersPage: UsersPageType
+    users: Array<UsersType>
     totalUserCount: number
     pagesSize: number
     currentPage: number
@@ -14,6 +13,7 @@ type UseresType = {
     setUser: (users: Array<UsersType>) => void
     setCurrentUser: (currentPage: number) => void
     isFetching: boolean
+    onPageChanged: (pageNumber: number) => void
 }
 
 function Users(props: UseresType) {
@@ -29,7 +29,7 @@ function Users(props: UseresType) {
                 return <span onClick={() => { props.setCurrentUser(p) }} className={props.currentPage === p ? s.selectedPage : ""}>{p}</span>
             })}
 
-            {props.usersPage.users.map((u) => <div key={u.id}>
+            {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <NavLink to={"/profile/" + u.id}>
