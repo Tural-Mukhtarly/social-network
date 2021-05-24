@@ -2,6 +2,7 @@ import { addNewBodyAC, changeNewBodyAC } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store'
+import { Dispatch } from 'redux'
 
 
 const mapStateToProps = (state: AppStateType) => {
@@ -10,7 +11,7 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         updateNewMessageBody: (body: string) => {
             dispatch(changeNewBodyAC(body))

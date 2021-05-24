@@ -1,21 +1,24 @@
+import { ActionTypes } from "./store"
+
 export type followTypeAC = ReturnType<typeof followAC>
 export type unfollowTypeAC = ReturnType<typeof unfollowAC>
 export type setUserTypeAC = ReturnType<typeof setUserAC>
 export type setCurrentUserTypeAC = ReturnType<typeof setCurrentUserAC>
 export type setTotaltUserTypeAC = ReturnType<typeof setUsersTotalCountAC>
 
-type LocationType = {
-    city: string,
-    country: string
+type PhotosType = {
+    small: null,
+    large: null
 }
 
 export type UsersType = {
     id: number
     photoUrl: string
+    uniqueUrlName: null
     followed: boolean
-    fullName: string
-    status: string
-    location: LocationType
+    name: string
+    status: null
+    photos: PhotosType
 }
 
 const initialState = {
@@ -28,7 +31,7 @@ const initialState = {
 
 export type InitialStateType = typeof initialState
 
-const userReducers = (state: InitialStateType = initialState, action: any): InitialStateType => {
+const userReducers = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -57,7 +60,7 @@ const userReducers = (state: InitialStateType = initialState, action: any): Init
             return { ...state, currentPage: action.currentPage }
         }
         case "SET-TOTAL-USERS-COUNT": {
-            return { ...state, currentPage: action.count }
+            return { ...state, totalUserCount: action.count }
         }
         default:
             return state
@@ -91,7 +94,7 @@ export const setCurrentUserAC = (currentPage: number) => {
 }
 export const setUsersTotalCountAC = (totalUserCount: number) => {
     return {
-        type: "SET-CURRENT-USERS",
+        type: "SET-TOTAL-USERS-COUNT",
         count: totalUserCount
     } as const
 }

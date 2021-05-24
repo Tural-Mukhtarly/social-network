@@ -1,6 +1,6 @@
 import dialogsReducer, { AddNewBodyActionType, ChangeNewBodyActionType } from "./dialogs-reducer"
 import profileReducer, { AddPostActionType, ChangeNewTextActionType, setUserProfileActionType } from "./profile-reducer"
-import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC, setCurrentUserTypeAC } from "./users-reducer"
+import userReducers, { followTypeAC, unfollowTypeAC, setUserTypeAC, setCurrentUserTypeAC, setTotaltUserTypeAC } from "./users-reducer"
 
 
 type DialogsType = {
@@ -64,7 +64,16 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionTypes) => void
 }
-export type ActionTypes = AddPostActionType | ChangeNewTextActionType | ChangeNewBodyActionType | AddNewBodyActionType | followTypeAC | unfollowTypeAC | setUserTypeAC | setCurrentUserTypeAC | setUserProfileActionType
+export type ActionTypes = AddPostActionType
+    | ChangeNewTextActionType
+    | ChangeNewBodyActionType
+    | AddNewBodyActionType
+    | followTypeAC
+    | unfollowTypeAC
+    | setUserTypeAC
+    | setCurrentUserTypeAC
+    | setUserProfileActionType
+    | setTotaltUserTypeAC
 
 export const store: StoreType = {
     _state: {
@@ -134,7 +143,7 @@ export const store: StoreType = {
 
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.usersPage = userReducers(this._state.usersPage, action)
+        // this._state.usersPage = userReducers(this._state.usersPage, action)
         // this._state.sidebarPage = userReducers(this._state.sidebarPage, action)
 
         this._renderTree()

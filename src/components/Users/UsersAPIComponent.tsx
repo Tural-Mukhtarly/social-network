@@ -19,20 +19,24 @@ type UsersAPIComponentsType = {
 
 export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
     componentDidMount() {
+        if (this.props.users.length === 0) {
             axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
                 .then(response => {
                     this.props.setUser(response.data.items)
                     this.props.setTotalUserCount(response.data.totalUserCount)
+                    console.log(response.data.items);
                 })
+        }
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentUser(pageNumber)
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesSize}`)
-                .then(response => {
-                    this.props.setUser(response.data.items)
-                })
-        
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesSize}`)
+            .then(response => {
+                this.props.setUser(response.data.items)
+
+
+            })
     }
 
     render() {

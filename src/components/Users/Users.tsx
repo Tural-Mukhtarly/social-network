@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { isDebuggerStatement } from 'typescript'
 import { UsersType } from '../../redux/users-reducer'
 import s from './Users.module.css'
 
@@ -29,30 +30,34 @@ function Users(props: UseresType) {
                 return <span onClick={() => { props.setCurrentUser(p) }} className={props.currentPage === p ? s.selectedPage : ""}>{p}</span>
             })}
 
-            {props.users.map(u => <div key={u.id}>
-                <span>
-                    <div>
-                        <NavLink to={"/profile/" + u.id}>
-                            <img alt="#" src={"https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"} className={s.userPhoto} />
-                        </NavLink>
+            {props.users.map(u => {
+                return (
+                    <div key={u.id}>
+                        <span>
+                            <div>
+                                <NavLink to={"/profile/" + u.id}>
+                                    <img alt="#" src={"https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"} className={s.userPhoto} />
+                                </NavLink>
+                            </div>
+                            <div>
+                                {u.followed
+                                    ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
+                                    : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+                            </div>
+                        </span>
+                        <span>
+                            <span>
+                                <div>{u.name}</div>
+                                <div>{u.status}</div>
+                            </span>
+                            <span>
+                                <div>{"u.location.country"}</div>
+                                <div>{"u.location.city"}</div>
+                            </span>
+                        </span>
                     </div>
-                    <div>
-                        {u.followed
-                            ? <button onClick={() => { props.follow(u.id) }}>Follow</button>
-                            : <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>}
-                    </div>
-                </span>
-                <span>
-                    <span>
-                        <div>{u.fullName}</div>
-                        <div>{u.status}</div>
-                    </span>
-                    <span>
-                        <div>{"u.location.country"}</div>
-                        <div>{"u.location.city"}</div>
-                    </span>
-                </span>
-            </div>)}
+                )
+            })}
         </div>
     )
 }

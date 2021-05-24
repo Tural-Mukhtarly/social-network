@@ -1,18 +1,20 @@
 import { connect } from 'react-redux'
-import { followAC, InitialStateType, setCurrentUserAC, setUserAC, unfollowAC, UsersType } from '../../redux/users-reducer'
+import { Dispatch } from 'redux'
+import { AppStateType } from '../../redux/redux-store'
+import { followAC, InitialStateType, setCurrentUserAC, setUserAC, setUsersTotalCountAC, unfollowAC, UsersType } from '../../redux/users-reducer'
 import { UsersAPIComponent } from './UsersAPIComponent'
 
-const mapStateToProps = (state: InitialStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
-        users: state.users,
-        pagesSize: state.pagesSize,
-        totalUserCount: state.totalUserCount,
-        currentPage: state.currentPage,
-        isFetching: state.isFetching
+        users: state.usersPage.users,
+        pagesSize: state.usersPage.pagesSize,
+        totalUserCount: state.usersPage.totalUserCount,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         follow: (userID: number) => {
             dispatch(followAC(userID))
@@ -27,7 +29,7 @@ const mapDispatchToProps = (dispatch: any) => {
             dispatch(setCurrentUserAC(currentPage))
         },
         setTotalUserCount: (totalCount: number) => {
-            dispatch(setCurrentUserAC(totalCount))
+            dispatch(setUsersTotalCountAC(totalCount))
         }
     }
 }

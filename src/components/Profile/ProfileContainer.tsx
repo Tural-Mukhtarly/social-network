@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { Dispatch } from 'redux'
 import { setUserProfile } from '../../redux/profile-reducer'
 import { AppStateType } from '../../redux/redux-store'
 import Profile from './Profile'
@@ -44,7 +45,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         profile: state.profilePage.profile
     }
 }
-const mapDispatchToProps = (dispatch: any): mapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
         setUserProfile: (profile: any) => {
             dispatch(setUserProfile(profile))
