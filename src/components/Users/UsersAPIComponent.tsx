@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { UsersType } from '../../redux/users-reducer'
 import Users from './Users'
+import { userAPI } from '../../api/api'
 // import loading from './loading.gif'
 
 type UsersAPIComponentsType = {
@@ -19,28 +20,22 @@ type UsersAPIComponentsType = {
 
 export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
     componentDidMount() {
-        if (this.props.users.length === 0) {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
-                .then(response => {
-                    this.props.setUser(response.data.items)
-                    this.props.setTotalUserCount(response.data.totalUserCount)
-                    console.log(response.data.items);
-                })
-        }
+        userAPI.getUsers(this.props.currentPage, this.props.pagesSize)
+            .then(data => {
+                this.props.setUser(data.items)
+                this.props.setTotalUserCount(data.totalUserCount)
+            })
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentUser(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesSize}`)
-            .then(response => {
-                this.props.setUser(response.data.items)
-
-
+        userAPI.getUsers(pageNumber, this.props.pagesSize)
+            .then(data => {
+                this.props.setUser(data.items)
             })
     }
 
     render() {
-
         return (
             <>
                 { this.props.isFetching ? <img alt="" /> : null}
