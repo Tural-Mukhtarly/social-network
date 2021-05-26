@@ -10,29 +10,22 @@ type UsersAPIComponentsType = {
     pagesSize: number
     totalUserCount: number
     currentPage: number
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
-    setUser: (users: Array<UsersType>) => void
-    setCurrentUser: (currentPage: number) => void
+    followAC: (userID: number) => void
+    unfollowAC: (userID: number) => void
+    setUserAC: (users: Array<UsersType>) => void
+    setCurrentUserAC: (currentPage: number) => void
     isFetching: boolean
-    setTotalUserCount: (totalCount: number) => void
+    setTotalUserCountAC: () => void
+    getUsersThunk: any
 }
 
 export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
     componentDidMount() {
-        userAPI.getUsers(this.props.currentPage, this.props.pagesSize)
-            .then(data => {
-                this.props.setUser(data.items)
-                this.props.setTotalUserCount(data.totalUserCount)
-            })
+        this.props.getUsersThunk(this.props.currentPage,this.props.pagesSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentUser(pageNumber)
-        userAPI.getUsers(pageNumber, this.props.pagesSize)
-            .then(data => {
-                this.props.setUser(data.items)
-            })
+       this.props.getUsersThunk(pageNumber,this.props.pagesSize)
     }
 
     render() {
@@ -44,10 +37,10 @@ export class UsersAPIComponent extends Component<UsersAPIComponentsType> {
                     totalUserCount={this.props.totalUserCount}
                     pagesSize={this.props.pagesSize}
                     users={this.props.users}
-                    follow={this.props.follow}
-                    unfollow={this.props.unfollow}
-                    setUser={this.props.setUser}
-                    setCurrentUser={this.props.setCurrentUser}
+                    follow={this.props.followAC}
+                    unfollow={this.props.unfollowAC}
+                    setUser={this.props.setUserAC}
+                    setCurrentUser={this.props.setCurrentUserAC}
                     currentPage={this.props.currentPage}
                     isFetching={this.props.isFetching}
                 />

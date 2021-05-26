@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
 import { AppStateType } from '../../redux/redux-store'
-import { followAC, InitialStateType, setCurrentUserAC, setUserAC, setUsersTotalCountAC, unfollowAC, UsersType } from '../../redux/users-reducer'
+import { followAC, getUsersThunk, setCurrentUserAC, setUserAC, setUsersTotalCountAC, unfollowAC } from '../../redux/users-reducer'
 import { UsersAPIComponent } from './UsersAPIComponent'
 
 const mapStateToProps = (state: AppStateType) => {
@@ -14,24 +13,7 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        follow: (userID: number) => {
-            dispatch(followAC(userID))
-        },
-        unfollow: (userID: number) => {
-            dispatch(unfollowAC(userID))
-        },
-        setUser: (users: Array<UsersType>) => {
-            dispatch(setUserAC(users))
-        },
-        setCurrentUser: (currentPage: number) => {
-            dispatch(setCurrentUserAC(currentPage))
-        },
-        setTotalUserCount: (totalCount: number) => {
-            dispatch(setUsersTotalCountAC(totalCount))
-        }
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
+export default connect(mapStateToProps, {
+    followAC, unfollowAC, setUserAC, setCurrentUserAC, setUsersTotalCountAC, getUsersThunk
+})(UsersAPIComponent)

@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+import { userAPI } from './../api/api';
 import { ActionTypes } from "./store"
 
 export type followTypeAC = ReturnType<typeof followAC>
@@ -98,5 +100,16 @@ export const setUsersTotalCountAC = (totalUserCount: number) => {
         count: totalUserCount
     } as const
 }
+
+export const getUsersThunk = (currentPage: number, pagesSize: number) => {
+    return (dispatch: Dispatch) => {
+        userAPI.getUsers(currentPage, pagesSize)
+            .then(data => {
+                dispatch(setUserAC(data.items))
+                dispatch(setUsersTotalCountAC(data.totalUserCount))
+            })
+    }
+}
+
 
 export default userReducers
